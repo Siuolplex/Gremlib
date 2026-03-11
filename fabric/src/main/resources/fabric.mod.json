@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "gremlib",
+  "version": "${version}",
+  "name": "Gremlib",
+  "description": "The main library powering various mods by Siuolplex",
+  "authors": [
+    {
+      "name": "Siuolplex",
+      "contact": {
+        "bluesky": "https://bsky.app/profile/siuol.bsky.social"
+      }
+    }
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.siuolplex.gremlib.fabric.WoodYouDyeFabric"
+    ],
+    "client": [
+      "io.siuolplex.gremlib.fabric.WoodYouDyeFabricClient"
+    ],
+    "fabric-datagen": [
+      "io.siuolplex.gremlib.fabric.WoodYouDyeFabricDatagen"
+    ]
+  },
+  "mixins": [
+    "wood_you_dye.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric-api": "*",
+    "minecraft": ">=1.21"
+  }
+}

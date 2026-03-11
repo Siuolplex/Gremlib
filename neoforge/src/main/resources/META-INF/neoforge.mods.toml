@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "gremlib"
+version = "${version}"
+displayName = "Gremlib"
+displayURL = ""
+authors = "Siuolplex"
+credits = ''''
+Siuolplex - Mod Author
+'''
+description = '''
+The main library powering various mods by Siuolplex.
+'''
+logoFile = "icon.png"
+
+[[dependencies.gremlib]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gremlib]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[26.0, 26.2]"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config="gremlib.mixins.json"

@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.siuolplex.gremlib.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockEntityTypeMixin",
+    "BlockSetTypeMixin",
+    "WoodTypeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "client.HangingSignEditScreenMixin",
+    "client.HangingSignRendererMixin",
+    "client.SignEditScreenMixin"
+  ]
+}
