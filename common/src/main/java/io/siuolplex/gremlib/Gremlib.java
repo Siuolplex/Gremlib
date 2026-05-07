@@ -8,29 +8,28 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class Gremlib implements GremMod {
-    private static Gremlib INSTANCE;
-    private Loader loader = null;
-    public static final String MODID = "gremlib";
-    public static Logger LOGGER = LoggerFactory.getLogger("Gremlib");
+public class Gremlib extends GremMod {
+    public static Loader LOADER = null;
+    private final Logger LOGGER = LoggerFactory.getLogger("Gremlib");
+    public static Gremlib INSTANCE = null;
 
     public Gremlib(Loader loader) {
+        if (INSTANCE != null) {
+            throw new GremMod.GremModReinitError("Can't run a GremMod twice over!");
+        }
 
+        LOADER = loader;
+        super();
         INSTANCE = this;
     }
 
-    public static Gremlib getInstance() {
-        return INSTANCE;
+    @Override
+    public String getModID() {
+        return "gremlib";
     }
 
     @Override
-    public List<SubGremMod> getSubmods() {
-        return List.of();
+    public Logger getLogger() {
+        return LOGGER;
     }
-
-    public Loader getLoader() {
-        return loader;
-    }
-
-
 }

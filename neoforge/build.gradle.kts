@@ -1,4 +1,3 @@
-
 plugins {
     id("gremdle-loader")
     id("net.neoforged.moddev")
@@ -10,9 +9,6 @@ val mod_id: String by project
 val version: String by project
 val mod_name: String by project
 
-//val parchment_minecraft_version : String by project
-//val parchment_version : String by project
-
 val neoforge_version : String by project
 
 neoForge {
@@ -22,10 +18,12 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-    /*parchment {
-        minecraftVersion = parchment_minecraft_version
-        mappingsVersion = parchment_version
-    }*/
+
+    val intInject = project(":common").file("interfaces.json")
+    if (intInject.exists()) {
+        interfaceInjectionData.from(intInject.absolutePath)
+    }
+
     runs {
         configureEach {
             systemProperty("neoforge.enabledGameTestNamespaces", mod_id)
@@ -57,4 +55,3 @@ neoForge {
 sourceSets.main.get().resources {
     srcDir ("src/generated/resources")
 }
-

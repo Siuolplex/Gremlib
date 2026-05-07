@@ -1,0 +1,5 @@
+{
+  "net/minecraft/world/entity/Entity": [
+    "io/siuolplex/gremlib/world/interaction/entity/EntityWorldInteractions"
+  ]
+}

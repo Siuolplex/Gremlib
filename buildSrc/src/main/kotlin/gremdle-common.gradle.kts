@@ -11,7 +11,7 @@ val mod_name: String by project
 val mod_author: String by project
 
 base {
-    archivesName = "${mod_id}-${project.name}"
+    archivesName = "${mod_id}-${version}+${project.name}"
 }
 
 java {
@@ -28,7 +28,7 @@ repositories {
     exclusiveContent {
         forRepository {
             maven {
-                name = "Sponge"
+                name = "FabricMC"
                 url = uri("https://repo.spongepowered.org/repository/maven-public")
             }
         }
@@ -55,14 +55,20 @@ repositories {
     }
 }
 
+dependencies {
+    /*if (!(project.hasProperty("gremdle.include-gremlib") && project.property("gremdle.include-gremlib")?.equals("false") == true)) {
+        var gremlib_version : String = project.property("gremlib_version") as String
+        implementation("io.siuolplex:gremlib:${gremlib_version}+${project.name}")
+    }*/
+}
+
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 arrayOf("apiElements", "runtimeElements", "sourcesElements", "javadocElements").forEach { variant ->
     configurations.get(variant).outgoing {
-        capability("$group:${project.name}:$version")
-        capability("$group:${base.archivesName.get()}:$version")
-        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
-        capability("$group:$mod_id:$version")
+        capability("${group}:${mod_id}:${version}")
+        capability("${group}:${mod_id}:${version}+${project.name}")
+        capability("${group}:${mod_id}:${version}+${project.name}-${minecraft_version}")
     }
 
     publishing.publications.configureEach {
@@ -129,7 +135,8 @@ tasks {
 publishing {
     publications {
         register<MavenPublication>("mavenJava") {
-            artifactId = base.archivesName.get()
+            artifactId = mod_id
+            version = version + "+" + project.name
             from(components.getByName("java"))
         }
     }

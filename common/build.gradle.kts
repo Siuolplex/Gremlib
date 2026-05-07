@@ -6,8 +6,10 @@ plugins {
 
 val minecraft_version : String by project
 val neoform_version : String by project
-//val parchment_minecraft_version : String by project
-//val parchment_version : String by project
+val mixin_version : String by project
+val fabric_mixin_version : String by project
+val mixin_extras_version : String by project
+
 
 neoForge {
     neoFormVersion = neoform_version
@@ -15,20 +17,31 @@ neoForge {
     val at = file("src/main/resources/META-INF/accesstransformer.cfg")
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
+        accessTransformers {
+            from(at.absolutePath)
+            publish(at)
+        }
     }
 
-    /*parchment {
-        minecraftVersion = parchment_minecraft_version
-        mappingsVersion = parchment_version
-    }*/
+    val intInject = file("interfaces.json")
+    if (intInject.exists()) {
+        interfaceInjectionData {
+            from(intInject.absolutePath)
+            publish(intInject)
+        }
+    }
+
+    interfaceInjectionData {
+
+    }
 }
 
 dependencies {
-    compileOnly("org.spongepowered:mixin:0.8.7")
+    compileOnly("net.fabricmc:sponge-mixin:${fabric_mixin_version}+mixin.${mixin_version}")
 
     // fabric and neoforge both bundle mixinextras, so it is safe to use it in common
-    compileOnly("io.github.llamalad7:mixinextras-common:0.5.0")
-    annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")
+    compileOnly("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")
+    annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")
 }
 
 

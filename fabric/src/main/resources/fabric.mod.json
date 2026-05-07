@@ -19,21 +19,18 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.siuolplex.gremlib.fabric.WoodYouDyeFabric"
+      "io.siuolplex.gremlib.fabric.GremlibFabric"
     ],
-    "client": [
-      "io.siuolplex.gremlib.fabric.WoodYouDyeFabricClient"
-    ],
-    "fabric-datagen": [
-      "io.siuolplex.gremlib.fabric.WoodYouDyeFabricDatagen"
-    ]
+    "client": []
   },
   "mixins": [
-    "wood_you_dye.mixins.json"
+    "gremlib.mixins.json",
+    "gremlib.fabric.mixins.json"
   ],
+  "accessWidener": "gremlib.classtweaker",
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.18.0",
     "fabric-api": "*",
-    "minecraft": ">=1.21"
+    "minecraft": ">=26.1"
   }
 }

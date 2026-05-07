@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.siuolplex.gremtest.mixin",
+  "package": "io.siuolplex.gremlib.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
@@ -9,6 +9,5 @@
     "defaultRequire": 1
   },
   "client": [
-  ],
-  "refmap": "wood_you_dye.refmap.json"
+  ]
 }
