@@ -20,6 +20,7 @@ public class GremlibNeoforge {
 
     public static final Loader MODLOADER = new GremNeoLoader();
     public final IEventBus modBus;
+    private boolean mappedRegistries = false;
 
     public GremlibNeoforge(IEventBus modBus) {
         this.modBus = modBus;
@@ -41,6 +42,11 @@ public class GremlibNeoforge {
 
     @SubscribeEvent
     public void onRegistration(RegisterEvent event) {
+        if (!mappedRegistries) {
+            GremModInitialization.mapRegistries();
+            mappedRegistries = true;
+        }
+
         GremModInitialization.fireRegistry(event.getRegistry());
     }
 }

@@ -17,6 +17,8 @@ public class GremlibFabric implements ModInitializer {
     public void onInitialize() {
         new Gremlib(new GremFabricLoader());
         FabricLoader.getInstance().invokeEntrypoints(GremModInitializer.ENTRYPOINT_ID, GremModInitializer.class, GremModInitializer::onGremModInitalization);
+
+        GremModInitialization.mapRegistries();
         for (Map.Entry<? extends ResourceKey<? extends Registry<?>>, ? extends Registry<?>> registry : BuiltInRegistries.REGISTRY.entrySet()) {
             GremModInitialization.fireRegistry(registry.getValue());
         }

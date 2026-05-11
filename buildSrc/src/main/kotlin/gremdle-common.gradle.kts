@@ -96,7 +96,7 @@ tasks {
                 "Specification-Title" to mod_name,
                 "Specification-Vendor" to mod_author,
                 "Specification-Version" to archiveVersion,
-                "Implementation-Title" to "flipside",
+                "Implementation-Title" to mod_name,
                 "Implementation-Version" to archiveVersion,
                 "Implementation-Vendor" to mod_author,
                 "Built-On-Minecraft" to minecraft_version
@@ -112,11 +112,11 @@ tasks {
             "minecraft_version" to minecraft_version
         )
 
-        var jsonExpandProps = mutableMapOf<String, Object>();
+        var jsonExpandProps = mutableMapOf<String, Any>();
 
         expandProps.forEach {
                 entry -> jsonExpandProps += mapOf(entry.key to
-                    (if (entry.value is String) (entry.value as String).replace("\n", "\\\\n") else entry.value) as Object
+                    (if (entry.value is String) entry.value.replace("\n", "\\\\n") else entry.value) as Any
                 )
         }
 
@@ -140,10 +140,4 @@ publishing {
             from(components.getByName("java"))
         }
     }
-
-    /*repositories {
-        maven {
-            url = uri(layout.buildDirectory.dir("repo"))
-        }
-    }*/
 }

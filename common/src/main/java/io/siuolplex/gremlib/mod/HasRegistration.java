@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import java.util.function.Consumer;
 
-interface HasRegistration {
+public interface HasRegistration {
     Map<ResourceKey<?>, Consumer<Registry<?>>> getOrMapRegistries();
     void fireRegistry(Registry<?> registry);
 }

@@ -12,8 +12,9 @@ repositories {
 
 
 publishing {
-    repositories {
-        maven {
+    publications {
+        register<MavenPublication>("mavenJava") {
+            groupId = group as String?
 
         }
     }

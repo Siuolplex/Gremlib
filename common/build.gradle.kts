@@ -30,10 +30,6 @@ neoForge {
             publish(intInject)
         }
     }
-
-    interfaceInjectionData {
-
-    }
 }
 
 dependencies {
